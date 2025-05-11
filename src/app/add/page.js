@@ -35,7 +35,7 @@ const page = () => {
   }else {
     localStorage.setItem("posts", JSON.stringify([postWithId]))
   }
-    
+    alert("✔ Post added successfully!")
   }
 
   return (
@@ -50,13 +50,13 @@ const page = () => {
             <label className='text-purple-900 font-medium my-4' >User ID</label>
         </div>
         <div>
-          <input className='w-full border-2 border-purple-300 rounded-md my-2' name="userId" onChange={handleInputChange}/>
+          <input className='w-full border-2 border-purple-300 rounded-md my-2 indent-3' name="userId" onChange={handleInputChange}/>
         </div>
         <div>
             <label className='text-purple-900 font-medium my-4' >Image</label>
         </div>
         <div>
-          <input className='w-full border-2 border-purple-300 rounded-md my-2 indent-3' name="description" placeholder="Paste image URL here" onChange={handleInputChange}/>
+          <input className='w-full border-2 border-purple-300 rounded-md my-2 indent-3' name="imageUrl" placeholder="Paste image URL here" onChange={handleInputChange}/>
         </div>
         <div>
             <label className='text-purple-900 font-medium my-4' >Description</label>

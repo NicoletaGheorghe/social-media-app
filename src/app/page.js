@@ -1,5 +1,5 @@
 "use client";
-import { UserPost } from "./components/UserPost";
+import UserPost from "./components/UserPost";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -18,9 +18,34 @@ export default function Home() {
     }
     loadPosts()
   }, []);
-
+   const handleLikeCount = (id) =>{
+        const updatedPost = posts.map(post => {
+          if (post.id === id){
+            return {
+              ...post,
+            likedPostCount: (post.likedPostCount || 0) + 1,
+            }
+          }
+          return post;
+        })
+        setPosts(updatedPost);
+        localStorage.setItem("posts", JSON.stringify(updatedPost));
+    }
+    const handleDislikesCount = (id) =>{
+      const updatedPost = posts.map(post => {
+          if (post.id === id){
+            return {
+              ...post,
+            dislikedPostCount: (post.dislikedPostCount || 0) +1,     
+            }
+          }
+          return post;
+        })
+        setPosts(updatedPost);
+        localStorage.setItem("posts", JSON.stringify(updatedPost));
+    }
   if(loading){
-    return(
+     return(
       <div className='flex flex-col pl-3 pr-3 md:w-1/3 mx-auto mt-6'>
         <h1 className="text-fuchsia-900 font-medium">Loading...</h1>
       </div>
@@ -41,7 +66,10 @@ export default function Home() {
                  imageUrl={post.imageUrl}
                  description={post.description}
                  id={post.id}
-                 
+                 handleLikes={handleLikeCount}
+                 handleDislikes={handleDislikesCount}
+                 dislikedPostCount={post.dislikedPostCount}
+                 likedPostCount={post.likedPostCount}
                 />
                })}
               </div>
