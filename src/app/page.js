@@ -13,8 +13,8 @@ export default function Home() {
        if (storedPosts) {
         const parsedPosts = JSON.parse(storedPosts);
         setPosts(parsedPosts);
-        setLoading(false);
        }
+       setLoading(false);
     }
     loadPosts()
   }, []);
